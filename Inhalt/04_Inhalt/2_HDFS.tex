@@ -1,0 +1,44 @@
+\chapter{HDFS}
+\begin{quote}
+    Die Sunshine AG ist ein großer Reiseveranstalter und hat im Laufe der Zeit 10 Mio. Bilder von Reisezielen, Hotels, Cafes usw. gesammelt. Im Durchschnitt ist jedes Bild ca. 2 Megabyte groß. Die Bilder werden auf einem einzigen Zentralserver gespeichert. In Zukunft möchte die Sunshine AG auch Bilder und Videos, die sie von ihren Kunden zugesendet bekommt, langfristig abspeichern und erwartet mittelfristig weitere 75 Mio. Dateien á 15 Megabyte.
+\end{quote}
+
+\section{Entscheidung für HDFS}
+\begin{quote}
+    Würde ein HDFS hier Sinn machen? Begründe Deine Antwort mit Deinen eigenen Worten.
+\end{quote}
+Ein HDFS würde für die Sunshine AG mit derzeitiger technischer Ausrüstung keinen Sinn ergeben. HDFS ist eine einfache und günstige Methode der Datenspeicherung, jedoch nur auf verteilten Systemen, die damit ein hochverfügbares System darstellen können. Durch die momentane technische Ausstattung wäre ein HDFS nicht möglich. 
+
+Wenn die Sunshine AG jedoch neue Hardware kauft und in günstige und mehrere Server investiert, können die vielen Bilder und Dateien dort dann günstig und einfach abgespeichert werden - dann würde sich ein HDFS lohnen. Dort können die Bilder dann in dem HDFS Data Lake gespeichert werden, welches noch aufgesetzt werden müsste. Jedoch sollten die Server bzw. Racks so groß sein, dass dort eine Vielzahl von Dateien drauf abgespeichert werden kann, da die erwarteten Speicherauslastungen sehr groß sind:
+
+    $(10.000.000 * 2 MB = 20.000.000 MB) + (75.000.000 * 15 MB = 1.125.000.000 MB) = 1.145.000.000 MB$
+    
+Durch die geringen Hardwareanforderungen an HDFS-Server sollte dies jedoch kein Kostenproblem darstellen.
+
+\section{Hochverfügbares HDFS}
+\begin{quote}
+    Die Sunshine AG entscheidet sich dazu, lediglich die 10 Mio. + 75 Mio. Bilder in einem HDFS zu speichern. Angenommen das HDFS besteht aus 100 Data Nodes, die jeweils eine Ausfallwahrscheinlichkeit von 20 \% besitzen und einem Name Node, der nicht ausfallen kann. Wie oft müssten die Bilder repliziert sein, damit die Sunshine AG eine hochverfügbare Lösung hat? 
+\end{quote}
+Hochverfügbarkeit bezeichnet in der Literatur eine Eigenschaft von Systemen, die aussagt, dass das System zu 99,9 \% läuft \cite{bundesamt_fur_sicherheit_in_der_informationstechnik_einfuhrung_2013} \cite{portnoy_virtualisierung_2012} \cite{ieee_high_2010}, was auch als Verfügbarkeitsstufe 2 bekannt ist \cite{frey_hochverfugbarkeit_2010}. Das bedeutet, dass das System für 8:45:58 Stunden pro Jahr ausfallen darf. Je nach Literatur oder Hersteller von Produkten kann Hochverfügbarkeit auch erst ab 99,99 \% gegeben sein \cite{frey_hochverfugbarkeit_2010}. Das würde einer Downtime von 52:36 Minuten pro Jahr entsprechen. Da es sich in der Aufgabe um Bilder bei einem Reiseveranstalter handelt, kann 99,9 \% Uptime als hochverfügbar genommen werden. 
+
+Um eine Verfügbarkeit von 99,9 \% zu gewährleisten, müssen die Bilder auf verschiedenen Servern repliziert werden, damit immer auf einen Server zugegriffen werden kann, der nicht ausfällt. 
+\begin{align*}
+    0,2^x <= 0,001
+\end{align*}
+\begin{align*}
+    x \cdot log(0,2) >= log(0,001)
+\end{align*}
+\begin{align*}
+    x >= \frac{log(0,001)}{log(0,2)}
+\end{align*}
+\begin{align*}
+    x >= 4,292
+\end{align*}
+
+$x$: Anzahl an Name Nodes, auf denen ein Bild repliziert werden muss
+
+$0,2$: Ausfallwahrscheinlichkeit einer Name Node $1 - 0,8$
+
+$0,001$: Erlaubte Ausfallwahrscheinlichkeit bei Hochverfügbarkeit $1 - 0,999$
+
+Nach der Berechnung müssen die Bilder demnach auf mehr als 4,292 Name Nodes repliziert werden, was aufgerundet mindestens 5 Name Nodes entspricht, damit Hochverfügbarkeit der Bilder im System gegeben wird. Würde als Hochverfügbarkeitsdefinition 99,99 \% in Betracht gezogen werden, würde sich in den Rechnungen die Ausfallwahrscheinlichkeit von 0,001 auf 0,0001 verringern. Dann beträge x = 5,723 und man bräuchte eine 6-fache Replikation der Bilder auf den Name Nodes.

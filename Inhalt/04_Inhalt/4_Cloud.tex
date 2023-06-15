@@ -1,0 +1,29 @@
+\chapter{Cloud}
+
+\section{Nutzung von Cloud-Systemen}
+\begin{quote}
+    Welche Gründe sprechen für die Nutzung von Cloud-Systemen?
+\end{quote}
+Für eine Nutzung von Cloud-Systemen sprechen mehrere Gründe. Zum einen geben Cloud-Systeme die Möglichkeit, dass Software, Infrastrukturen und Plattformen als Service angeboten werden, welche der Anwender abonnieren kann. Dadurch entfallen Kosten für Wartung und Hardware, es fallen lediglich Kosten für das Abonnement an. Cloud-Systeme sind auch von überall ansprechbar. Das bedeutet, dass man zum Arbeiten mit diesen Systemen von überall auf dieses zugreifen kann. Die Daten in Cloud Systemen sind oft, jedoch nicht immer, geographisch verteilt. Damit liegen die Daten auf verschiedenen Servern, die zusammen eine geringere Ausfallquote haben, als ein einzelnes on-Premise-System.
+
+\section{On-Premise vs. Cloud}
+\begin{quote}
+    In welchem Fall würdest Du ein Hadoop-System on-Premise aufsetzen, wann hingegen in der Cloud?
+\end{quote}
+Ein Hadoop-System in der Cloud lohnt sich vor allem, wenn ein System mit einer hohen Flexibilität und Skalierbarkeit gewünscht ist. Durch die Vorteile von Cloud-Systemen, wo man die Ressourcen zahlt und bekommt, die man auch nutzt, können Schwankungen in der Nutzung abgefangen werden. Zusätzlich ist das Cloud-System, wie in Aufgabe 4a) beschrieben, günstiger, da keine eigenen Hardware- und Wartungskosten anfallen. Zusätzlich sind die Daten in der Cloud möglicherweise auf verschiedenen Systemen gespeichert, die ausfalltechnisch und lokationstechnisch unabhängig voneinander sind, was dem System eine höhere Ausfalltolleranz gibt. 
+
+Ein On-Premise-Hadoop-System lohnt sich vor allem, wenn es einen konstanten hohen Speicherbedarf gibt, da somit die Daten direkt zur Hand sind, wenn diese gebraucht werden. Wenn es hohe Sicherheitsanforderungen gibt, macht es auch Sinn, ein on-Premise-System anzuschaffen. Dieses ist sicherheitstechnisch komplett konfigurierbar und kann an alle Sicherheitsanforderungen angepasst werden.
+
+\section{AWS Glue}
+\begin{quote}
+    Welche Verantwortung für die Sicherheit einer ''AWS Glue''-Anwendung übernimmt ein Cloud-Provider laut des ''Shared Responsibility Model''? Welche Verantwortung übernimmt demnach der Cloud-Kunde?
+\end{quote}
+Bei AWS Glue übernimmt AWS als Teil des ''Shared Responsibility Models'' selber einen Teil der Verantwortung der Sicherheit. Darunter zählt die Sicherheit der Infrastruktur selber, die AWS bereitstellt. Dazu gehören zum Beispiel auch die Rechenzentren von AWS, die als AWS Glue abonniert werden sowie die Authentifizierung des Anwenders bei AWS. Des Weiteren ist es die Pflicht von AWS, sich um die Sicherheit des AWS Glue Dienstes zu kümmern, wozu die Authentifizierung am Dienst sowie die Datenverschlüsselung gehören. 
+
+Der Anwender selber hat dazu andere Verpflichtungen, wie zum Beispiel das Managen von Upgrades und Patches, die Sicherheitsüberwachung und Konfiguration des Services. Zusätzlich muss sich der Anwender um die Datenverwaltung und den Datenschutz der eigenen Daten kümmern, wozu auch die Zugriffssteuerung von Daten gehört. 
+
+\section{AWS Glue ETL}
+\begin{quote}
+    Würdest du ''AWS Glue ETL'' als eine Software-as-a-Service, Platform-as-a-Service, oder Infrastructure-as-a-Service bezeichnen? Begründe deine Antwort mit deinen eigenen Worten.
+\end{quote}
+AWS Glue ETL ist ein Platform-as-a-Service, da der Anwender bei der Nutzung des ETL-Dienstes keinen direkten Zugriff auf die Infrastruktur hat, sondern die von AWS bereitgestellte Plattform nutzt. Auf dieser Plattform können dann die ETL-Jobs ausgeführt werden. Die Infrastruktur, auf der AWS Glue läuft, ist von AWS bereitgestellt und gehört auch nicht per se zum Abonnement, jedoch die daraufliegende Plattform. Bei AWS Glue ETL handelt es sich auch nicht um Software-as-a-Service, da keine Standardsoftware für die breite Masse angeboten wird. 

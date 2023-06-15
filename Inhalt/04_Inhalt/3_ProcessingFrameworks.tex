@@ -1,0 +1,73 @@
+\chapter{Processing Frameworks}
+
+\section{MapReduce}
+\begin{quote}
+    MapReduce wird heute nur noch selten für die Verarbeitung von sehr großen Datensätzen genutzt. Warum? Begründe mit Deinen eigenen Worten.
+\end{quote}
+
+MapReduce hat viele Vorteile, wenn es um die Verarbeitung von Datensätzen geht. Jedoch gibt es einige Nachteile, die heutzutage einfach durch andere Programme ausgeglichen werden können. Zum einen folgt MapReduce immer dem selben Ablauf Map, Shuffle und Reduce. Für Anforderungen, wo weitere Operationen und Transformationen nötig sind, ist dies nicht sinnvoll. Außerdem ist MapReduce recht langsam. MapReduce nutzt nämlich die Festplatte und keinen Cache, weshalb dauerhaft Disk-Operationen genutzt werden. Andere Programme, die mit Cache oder RAM arbeiten, sollten dort eher eingesetzt werden. 
+
+\section{MapReduce in Java}
+\begin{quote}
+    Gegeben ist folgendes MapReduce Programm, geschrieben in Java:
+\end{quote} 
+\lstinputlisting[
+    language=Java,
+	caption=Vorgegebener Code für Aufgabe 3b,
+	captionpos=t,               % Position, an der die Caption angezeigt wird t(op) oder b(ottom)
+	firstline=1,                % Zeilennummer im Dokument welche als erste angezeigt wird
+	lastline=24              % Letzte Zeile welche ins LaTeX Dokument übernommen wird
+]{Quellcode/3b.java}
+\begin{quote}
+    Erstelle nun zwei Texte. Der erste Text besteht aus deinem Vor- und Nachnamen. Der zweite Text besteht aus Deinem Wohnort und Arbeitgeber, z.B.: Text1: Alexander Lütke; Text2: Düsseldorf IBM Deutschland GmbH. Nutze diesen Text als Input für das oben gegebene MapReduce-Programm. Schreibe auf, welchen Output das Programm nach der Map-, nach der Shuffle- und nach der Reduce-Phase jeweils erzeugt. Übernimm‘ dabei das Format aus der Vorlesung.
+\end{quote}
+Die beiden Texte für die Aufgabe lauten ''Mathis Neunzig'' und ''Mannheim SAP SE''. Wenn diese Texte durch die Map-, Shuffle- und Reduce-Phase des gegebenen Programms laufen, ergeben sich folgende Ergebnisse:
+
+\subsubsection{Input}
+\lstinputlisting[
+    language=Java,
+	caption=Input für Aufgabe 3b und 3c,
+	captionpos=t,               % Position, an der die Caption angezeigt wird t(op) oder b(ottom)
+	firstline=1,                % Zeilennummer im Dokument welche als erste angezeigt wird
+	lastline=2             % Letzte Zeile welche ins LaTeX Dokument übernommen wird
+]{Quellcode/Input.java}
+
+\subsubsection{Map}
+\lstinputlisting[
+    language=Java,
+	caption=Ausgabe Map-Phase,
+	captionpos=t,               % Position, an der die Caption angezeigt wird t(op) oder b(ottom)
+	firstline=1,                % Zeilennummer im Dokument welche als erste angezeigt wird
+	lastline=29              % Letzte Zeile welche ins LaTeX Dokument übernommen wird
+]{Quellcode/Map.java}
+
+\subsubsection{Shuffle}
+\lstinputlisting[
+    language=Java,
+	caption=Ausgabe Shuffle-Phase,
+	captionpos=t,               % Position, an der die Caption angezeigt wird t(op) oder b(ottom)
+	firstline=1,                % Zeilennummer im Dokument welche als erste angezeigt wird
+	lastline=4             % Letzte Zeile welche ins LaTeX Dokument übernommen wird
+]{Quellcode/Shuffle.java}
+
+\subsubsection{Reduce}
+\lstinputlisting[
+    language=Java,
+	caption=Ausgabe Reduce-Phase,
+	captionpos=t,               % Position, an der die Caption angezeigt wird t(op) oder b(ottom)
+	firstline=1,                % Zeilennummer im Dokument welche als erste angezeigt wird
+	lastline=4             % Letzte Zeile welche ins LaTeX Dokument übernommen wird
+]{Quellcode/Reduce.java}
+
+\section{MapReduce mit Spark}
+\begin{quote}
+    Transformiere das oben gegebene MapReduce Programm in ein Spark Programm.
+\end{quote}
+Die nachfolgende Java-Datei befindet sich zusätzlich in der Abgabe auf Moodle.
+\lstinputlisting[
+    language=Java,
+	caption=Ergebnis Aufgabe 3c,
+	captionpos=t,               % Position, an der die Caption angezeigt wird t(op) oder b(ottom)
+	firstline=1,                % Zeilennummer im Dokument welche als erste angezeigt wird
+	lastline=76             % Letzte Zeile welche ins LaTeX Dokument übernommen wird
+]{Quellcode/3c.java}
